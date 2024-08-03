@@ -5,9 +5,6 @@ local rl = require("ffi/raylib")
 local windowWidth = 800
 local windowHeight = 450
 
-rl.InitWindow(windowWidth, windowHeight, "LuaPride")
-rl.SetTargetFPS(24)
-
 local flags = {
 	ace = {
 		path = "./flags/ace.png",
@@ -36,6 +33,9 @@ if arg[1] == "list" then
 end
 
 local flag = arg[1] or "inclusive"
+
+rl.InitWindow(windowWidth, windowHeight, "LuaPride")
+rl.SetTargetFPS(24)
 
 -- Load images
 for key, value in pairs(flags) do
