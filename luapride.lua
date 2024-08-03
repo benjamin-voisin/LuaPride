@@ -23,6 +23,18 @@ local flags = {
 	}
 }
 
+local function list_available_flags()
+	print("Available flags:")
+	for key, value in pairs(flags) do
+		print(string.format("\t%s", key))
+	end
+end
+
+if arg[1] == "list" then
+	list_available_flags()
+	os.exit(0)
+end
+
 local flag = arg[1] or "inclusive"
 
 -- Load images
