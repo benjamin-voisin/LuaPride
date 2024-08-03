@@ -57,6 +57,16 @@ local function previous()
 	flag = flags_list[i]
 end
 
+local function resize()
+	windowWidth = rl.GetScreenWidth()
+	windowHeight = rl.GetScreenHeight()
+	rl.UnloadTexture(flags[flag].texture)
+	rl.UnloadImage(flags[flag].image)
+	flags[flag].image = rl.LoadImage(flags[flag].path)
+	rl.ImageResize(flags[flag].image, windowWidth, windowHeight)
+	flags[flag].texture = rl.LoadTextureFromImage(flags[flag].image)
+end
+
 rl.InitWindow(windowWidth, windowHeight, "LuaPride")
 rl.SetTargetFPS(24)
 -- Load images
@@ -76,20 +86,16 @@ end
 while not rl.WindowShouldClose() do
 	if rl.IsKeyPressed(79) then
 		next()
+		resize()
 	end
 	if rl.IsKeyPressed(46) then
 		previous()
+		resize()
 	end
 	rl.BeginDrawing()
 	rl.ClearBackground(rl.RAYWHITE)
 	if ((windowWidth ~= rl.GetScreenWidth()) or (windowHeight ~= rl.GetScreenHeight())) then
-		windowWidth = rl.GetScreenWidth()
-		windowHeight = rl.GetScreenHeight()
-		rl.UnloadTexture(flags[flag].texture)
-		rl.UnloadImage(flags[flag].image)
-		flags[flag].image = rl.LoadImage(flags[flag].path)
-		rl.ImageResize(flags[flag].image, windowWidth, windowHeight)
-		flags[flag].texture = rl.LoadTextureFromImage(flags[flag].image)
+		resize()
 	end
 	rl.DrawTexture(flags[flag].texture, 0, 0, rl.WHITE)
 	rl.EndDrawing()
