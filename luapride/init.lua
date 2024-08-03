@@ -1,40 +1,11 @@
 #!/bin/luajit
 
-local rl = require("ffi/raylib")
-local colors = require("ffi/colors")
+local rl = require("luapride/ffi/raylib")
+
+local flags = require("luapride/flags")
 
 local windowWidth = 800
 local windowHeight = 450
-
-
-
-local flags = {
-	ace = {
-		type = "png",
-		path = "./flags/ace.png",
-	},
-	aro = {
-		type = "png",
-		path = "./flags/aro.png"
-	},
-	inclusive = {
-		type = "png",
-		path = "./flags/inclusive.png"
-	},
-	pan = {
-		type = "png",
-		path = "./flags/pansexual.png"
-	},
-	bi = {
-		type = "raylib",
-		draw = function (width, height)
-			rl.DrawRectangle(0,0, width, (2 * height) / 5 + 1, colors.bi_magenta)
-			rl.DrawRectangle(0,(2 * height) / 5, width, (1 * height) / 5 + 1, colors.bi_purple)
-			rl.DrawRectangle(0,(3 * height) / 5, width, (2 * height) / 5 + 1, colors.bi_blue)
-		end
-	}
-}
-
 
 
 local function list_available_flags()
