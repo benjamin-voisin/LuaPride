@@ -6,7 +6,7 @@ local windowWidth = 800
 local windowHeight = 450
 
 rl.InitWindow(windowWidth, windowHeight, "LuaPride")
-rl.SetTargetFPS(60)
+rl.SetTargetFPS(24)
 
 local flags = {
 	ace = {
