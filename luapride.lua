@@ -7,20 +7,23 @@ local windowHeight = 450
 
 local flags = {
 	ace = {
+		type = "png",
 		path = "./flags/ace.png",
 	},
 	aro = {
+		type = "png",
 		path = "./flags/aro.png"
 	},
 	inclusive = {
+		type = "png",
 		path = "./flags/inclusive.png"
 	},
 	pan = {
+		type = "png",
 		path = "./flags/pansexual.png"
 	}
 }
 
-local flags_list = {}
 
 
 local function list_available_flags()
@@ -37,14 +40,21 @@ end
 
 local flag = arg[1] or "inclusive"
 
+local flags_list = {}
+
 local i = 1
 local k = 1
-for key, _ in pairs(flags) do
+for key, value in pairs(flags) do
 	if key == flag then
 		i = k
 	end
 	flags_list[#flags_list + 1] = key
 	k = k + 1
+	if value.type == "png" then
+		flags[key].draw = function ()
+			rl.DrawTexture(value.texture, 0, 0, rl.WHITE)
+		end
+	end
 end
 
 local function next()
@@ -97,7 +107,7 @@ while not rl.WindowShouldClose() do
 	if ((windowWidth ~= rl.GetScreenWidth()) or (windowHeight ~= rl.GetScreenHeight())) then
 		resize()
 	end
-	rl.DrawTexture(flags[flag].texture, 0, 0, rl.WHITE)
+	flags[flag].draw(windowWidth, windowHeight)
 	rl.EndDrawing()
 end
 
