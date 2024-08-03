@@ -10,22 +10,22 @@ This uses [LuaJIT](https://luajit.org/) and [raylib](https://www.raylib.com/) to
 
 If you have the depenedncies on your system, you can simply
 ```
-luajit luapride.lua
+luajit luapride/init.lua
 ```
 Or even just
 ```
-./luapride.lua
+./luapride/init.lua
 ```
 to launch it.
 
 By default, it launches with the LGBT-inclusive flag, but you can choose with
 ```
-luajit luapride.lua {flag_name}
+luajit luapride/init.lua {flag_name}
 ```
 
 You can then navigate between the flags with H and J (vim goes brrrr).
 
 To list the available flags, do:
 ```
-luajit luapride.lua list
+luajit luapride/init.lua list
 ```
