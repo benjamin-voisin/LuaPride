@@ -1,9 +1,12 @@
 #!/bin/luajit
 
 local rl = require("ffi/raylib")
+local colors = require("ffi/colors")
 
 local windowWidth = 800
 local windowHeight = 450
+
+
 
 local flags = {
 	ace = {
@@ -21,6 +24,14 @@ local flags = {
 	pan = {
 		type = "png",
 		path = "./flags/pansexual.png"
+	},
+	bi = {
+		type = "raylib",
+		draw = function (width, height)
+			rl.DrawRectangle(0,0, width, (2 * height) / 5 + 1, colors.bi_magenta)
+			rl.DrawRectangle(0,(2 * height) / 5, width, (1 * height) / 5 + 1, colors.bi_purple)
+			rl.DrawRectangle(0,(3 * height) / 5, width, (2 * height) / 5 + 1, colors.bi_blue)
+		end
 	}
 }
 
