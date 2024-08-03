@@ -2,15 +2,16 @@
 
 local rl = require("ffi/raylib")
 
-local screenWidth = 800
-local screenHeight = 450
 
-rl.InitWindow(screenWidth, screenHeight, "LuaPride")
+local windowWidth = 800
+local windowHeight = 450
+
+rl.InitWindow(windowWidth, windowHeight, "LuaPride")
 rl.SetTargetFPS(60)
 
 local flag_image = rl.LoadImage("./flags/inclusive.png")
 
-rl.ImageResize(flag_image, screenWidth, screenHeight)
+rl.ImageResize(flag_image, windowWidth, windowHeight)
 
 local flag = rl.LoadTextureFromImage(flag_image)
 
