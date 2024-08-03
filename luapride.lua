@@ -20,6 +20,9 @@ local flags = {
 	}
 }
 
+local flags_list = {}
+
+
 local function list_available_flags()
 	print("Available flags:")
 	for key, value in pairs(flags) do
@@ -34,9 +37,28 @@ end
 
 local flag = arg[1] or "inclusive"
 
+local i = 1
+local k = 1
+for key, _ in pairs(flags) do
+	if key == flag then
+		i = k
+	end
+	flags_list[#flags_list + 1] = key
+	k = k + 1
+end
+
+local function next()
+	i = (i % #flags_list) + 1
+	flag = flags_list[i]
+end
+
+local function previous()
+	i = ((i - 2) % #flags_list) + 1
+	flag = flags_list[i]
+end
+
 rl.InitWindow(windowWidth, windowHeight, "LuaPride")
 rl.SetTargetFPS(24)
-
 -- Load images
 for key, value in pairs(flags) do
 	flags[key].image = rl.LoadImage(value.path)
@@ -52,6 +74,12 @@ if not flags[flag] then
 end
 
 while not rl.WindowShouldClose() do
+	if rl.IsKeyPressed(79) then
+		next()
+	end
+	if rl.IsKeyPressed(46) then
+		previous()
+	end
 	rl.BeginDrawing()
 	rl.ClearBackground(rl.RAYWHITE)
 	if ((windowWidth ~= rl.GetScreenWidth()) or (windowHeight ~= rl.GetScreenHeight())) then
