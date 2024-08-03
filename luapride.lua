@@ -44,15 +44,16 @@ for key, value in pairs(flags) do
 	flags[key].texture = rl.LoadTextureFromImage(flags[key].image)
 end
 
+if not flags[flag] then
+	rl.CloseWindow()
+	print("Flag provided doesn't exists...")
+	list_available_flags()
+	os.exit(1)
+end
+
 while not rl.WindowShouldClose() do
 	rl.BeginDrawing()
 	rl.ClearBackground(rl.RAYWHITE)
-	if not flags[flag] then
-		rl.CloseWindow()
-		print("Flag provided doesn't exists...")
-		list_available_flags()
-		os.exit(1)
-	end
 	rl.DrawTexture(flags[flag].texture, 0, 0, rl.WHITE)
 	rl.EndDrawing()
 end
