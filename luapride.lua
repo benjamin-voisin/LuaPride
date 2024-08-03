@@ -54,6 +54,15 @@ end
 while not rl.WindowShouldClose() do
 	rl.BeginDrawing()
 	rl.ClearBackground(rl.RAYWHITE)
+	if ((windowWidth ~= rl.GetScreenWidth()) or (windowHeight ~= rl.GetScreenHeight())) then
+		windowWidth = rl.GetScreenWidth()
+		windowHeight = rl.GetScreenHeight()
+		rl.UnloadTexture(flags[flag].texture)
+		rl.UnloadImage(flags[flag].image)
+		flags[flag].image = rl.LoadImage(flags[flag].path)
+		rl.ImageResize(flags[flag].image, windowWidth, windowHeight)
+		flags[flag].texture = rl.LoadTextureFromImage(flags[flag].image)
+	end
 	rl.DrawTexture(flags[flag].texture, 0, 0, rl.WHITE)
 	rl.EndDrawing()
 end
