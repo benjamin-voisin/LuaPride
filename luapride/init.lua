@@ -36,6 +36,20 @@ for key, value in pairs(flags) do
 		flags[key].draw = function ()
 			rl.DrawTexture(value.texture, 0, 0, rl.WHITE)
 		end
+		flags[key].resize = function ()
+			windowWidth = rl.GetScreenWidth()
+			windowHeight = rl.GetScreenHeight()
+			rl.UnloadTexture(value.texture)
+			rl.UnloadImage(value.image)
+			flags[flag].image = rl.LoadImage(value.path)
+			rl.ImageResize(value.image, windowWidth, windowHeight)
+			flags[flag].texture = rl.LoadTextureFromImage(value.image)
+		end
+	else
+		flags[key].resize = function()
+			windowWidth = rl.GetScreenWidth()
+			windowHeight = rl.GetScreenHeight()
+		end
 	end
 end
 
@@ -47,16 +61,6 @@ end
 local function previous()
 	i = ((i - 2) % #flags_list) + 1
 	flag = flags_list[i]
-end
-
-local function resize()
-	windowWidth = rl.GetScreenWidth()
-	windowHeight = rl.GetScreenHeight()
-	rl.UnloadTexture(flags[flag].texture)
-	rl.UnloadImage(flags[flag].image)
-	flags[flag].image = rl.LoadImage(flags[flag].path)
-	rl.ImageResize(flags[flag].image, windowWidth, windowHeight)
-	flags[flag].texture = rl.LoadTextureFromImage(flags[flag].image)
 end
 
 rl.InitWindow(windowWidth, windowHeight, "LuaPride")
@@ -78,16 +82,16 @@ end
 while not rl.WindowShouldClose() do
 	if rl.IsKeyPressed(79) then
 		next()
-		resize()
+		flags[flag].resize()
 	end
 	if rl.IsKeyPressed(46) then
 		previous()
-		resize()
+		flags[flag].resize()
 	end
 	rl.BeginDrawing()
 	rl.ClearBackground(rl.RAYWHITE)
 	if ((windowWidth ~= rl.GetScreenWidth()) or (windowHeight ~= rl.GetScreenHeight())) then
-		resize()
+		flags[flag].resize()
 	end
 	flags[flag].draw(windowWidth, windowHeight)
 	rl.EndDrawing()
