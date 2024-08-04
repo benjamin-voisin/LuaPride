@@ -1,3 +1,6 @@
+VERSION = "0.1.0"
+NAME = "luapride"
+
 local rl = require("luapride/ffi/raylib")
 
 local flags = require("luapride/flags")
