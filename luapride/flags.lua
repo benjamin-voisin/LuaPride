@@ -44,41 +44,41 @@ local function simple_draw (width, height, name)
 end
 
 return {
-	ace = {
+	Asexual = {
 		type = "raylib",
 		draw = function (width, height)
 			horizontal(width, height, {rl.BLACK, colors.ace_gray, rl.WHITE, colors.ace_purple})
 		end,
 		draw_text = function (width, height)
-			simple_draw(width, height, "ace")
+			simple_draw(width, height, "Asexual")
 		end,
 	},
-	aro = {
+	Aromantic = {
 		type = "raylib",
 		draw = function (width, height)
 			horizontal(width, height, {colors.aro_green, colors.aro_pale_green, rl.WHITE, colors.aro_gray, rl.BLACK})
 		end,
 		draw_text = function (width, height)
-			simple_draw(width, height, "aro")
+			simple_draw(width, height, "Aromantic")
 		end,
 	},
-	inclusive = {
+	Inclusive = {
 		type = "png",
 		path = get_path("inclusive.png"),
 		draw_text = function (width, height)
-			simple_draw(width, height, "inclusive")
+			simple_draw(width, height, "Inclusive")
 		end,
 	},
-	pan = {
+	Pansexual = {
 		type = "raylib",
 		draw = function (width, height)
 			horizontal(width, height, {colors.pan_pink, colors.pan_yellow, colors.pan_cyan})
 		end,
 		draw_text = function (width, height)
-			simple_draw(width, height, "pan")
+			simple_draw(width, height, "Pansexual")
 		end,
 	},
-	bi = {
+	Bisexual = {
 		type = "raylib",
 		draw = function (width, height)
 			rl.DrawRectangle(0,0, width, (2 * height) / 5 + 1, colors.bi_magenta)
@@ -86,7 +86,7 @@ return {
 			rl.DrawRectangle(0,(3 * height) / 5, width, (2 * height) / 5 + 1, colors.bi_blue)
 		end,
 		draw_text = function (width, height)
-			simple_draw(width, height, "bi")
+			simple_draw(width, height, "Bisexual")
 		end,
 	}
 }

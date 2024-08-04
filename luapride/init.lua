@@ -22,7 +22,7 @@ if arg[1] == "list" then
 	os.exit(0)
 end
 
-local flag = arg[1] or "inclusive"
+local flag = arg[1] or "Inclusive"
 
 local flags_list = {}
 
