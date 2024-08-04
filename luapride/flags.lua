@@ -25,6 +25,10 @@ local function get_path(file)
 			return path_prefix..file
 		end
 	end
+	print(string.format("File %s has not been found. Here are the possible paths searched:", file))
+	for _, path in possible_paths do
+		print(path)
+	end
 	os.exit(1)
 end
 
