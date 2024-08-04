@@ -34,20 +34,20 @@ for key, value in pairs(flags) do
 	flags_list[#flags_list + 1] = key
 	k = k + 1
 	if value.type == "png" then
-		flags[key].draw = function ()
+		value.draw = function ()
 			rl.DrawTexture(value.texture, 0, 0, rl.WHITE)
 		end
-		flags[key].resize = function ()
+		value.resize = function ()
 			windowWidth = rl.GetScreenWidth()
 			windowHeight = rl.GetScreenHeight()
 			rl.UnloadTexture(value.texture)
 			rl.UnloadImage(value.image)
-			flags[flag].image = rl.LoadImage(value.path)
+			value.image = rl.LoadImage(value.path)
 			rl.ImageResize(value.image, windowWidth, windowHeight)
-			flags[flag].texture = rl.LoadTextureFromImage(value.image)
+			value.texture = rl.LoadTextureFromImage(value.image)
 		end
 	else
-		flags[key].resize = function()
+		value.resize = function()
 			windowWidth = rl.GetScreenWidth()
 			windowHeight = rl.GetScreenHeight()
 		end
