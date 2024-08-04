@@ -1,6 +1,33 @@
 local rl = require("luapride/ffi/raylib")
 local colors = require("luapride/ffi/colors")
 
+local possible_paths = {
+	"./flags/",
+	"/lib/luarocks/rocks-5.1/luapride/0.1.0-1/flags/",
+	"/lib64/luarocks/rocks-5.1/luapride/0.1.0-1/flags/",
+}
+
+--- Check if a file or directory exists in this path
+local function exists(file)
+   local ok, err, code = os.rename(file, file)
+   if not ok then
+      if code == 13 then
+         -- Permission denied, but it exists
+         return true
+      end
+   end
+   return ok, err
+end
+
+local function get_path(file)
+	for _, path_prefix in pairs(possible_paths) do
+		if exists(path_prefix..file) then
+			return path_prefix..file
+		end
+	end
+	os.exit(1)
+end
+
 local function horizontal (width, height, stripes)
 	local stripe_size = height / #stripes
 	for i, color in pairs(stripes) do
@@ -23,7 +50,7 @@ return {
 	},
 	inclusive = {
 		type = "png",
-		path = "./flags/inclusive.png"
+		path = get_path("inclusive.png")
 	},
 	pan = {
 		type = "raylib",
