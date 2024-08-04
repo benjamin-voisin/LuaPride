@@ -1,5 +1,3 @@
-#!/bin/luajit
-
 local rl = require("luapride/ffi/raylib")
 
 local flags = require("luapride/flags")
