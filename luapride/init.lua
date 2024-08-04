@@ -80,6 +80,8 @@ if not flags[flag] then
 	os.exit(1)
 end
 
+local display_name = true
+
 while not rl.WindowShouldClose() do
 	if rl.IsKeyPressed(79) then
 		next()
@@ -89,12 +91,18 @@ while not rl.WindowShouldClose() do
 		previous()
 		flags[flag].resize()
 	end
+	if rl.IsKeyPressed(74) then
+		display_name = not display_name
+	end
 	rl.BeginDrawing()
 	rl.ClearBackground(rl.RAYWHITE)
 	if ((windowWidth ~= rl.GetScreenWidth()) or (windowHeight ~= rl.GetScreenHeight())) then
 		flags[flag].resize()
 	end
 	flags[flag].draw(windowWidth, windowHeight)
+	if display_name then
+		flags[flag].draw_text(windowWidth, windowHeight)
+	end
 	rl.EndDrawing()
 end
 

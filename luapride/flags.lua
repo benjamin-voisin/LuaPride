@@ -35,28 +35,44 @@ local function horizontal (width, height, stripes)
 	end
 end
 
+local function simple_draw (width, height, name)
+	rl.DrawText(name, 2, 2, 100, rl.GRAY)
+end
+
 return {
 	ace = {
 		type = "raylib",
 		draw = function (width, height)
 			horizontal(width, height, {rl.BLACK, colors.ace_gray, rl.WHITE, colors.ace_purple})
-		end
+		end,
+		draw_text = function (width, height)
+			simple_draw(width, height, "ace")
+		end,
 	},
 	aro = {
 		type = "raylib",
 		draw = function (width, height)
 			horizontal(width, height, {colors.aro_green, colors.aro_pale_green, rl.WHITE, colors.aro_gray, rl.BLACK})
-		end
+		end,
+		draw_text = function (width, height)
+			simple_draw(width, height, "aro")
+		end,
 	},
 	inclusive = {
 		type = "png",
-		path = get_path("inclusive.png")
+		path = get_path("inclusive.png"),
+		draw_text = function (width, height)
+			simple_draw(width, height, "inclusive")
+		end,
 	},
 	pan = {
 		type = "raylib",
 		draw = function (width, height)
 			horizontal(width, height, {colors.pan_pink, colors.pan_yellow, colors.pan_cyan})
-		end
+		end,
+		draw_text = function (width, height)
+			simple_draw(width, height, "pan")
+		end,
 	},
 	bi = {
 		type = "raylib",
@@ -64,6 +80,9 @@ return {
 			rl.DrawRectangle(0,0, width, (2 * height) / 5 + 1, colors.bi_magenta)
 			rl.DrawRectangle(0,(2 * height) / 5, width, (1 * height) / 5 + 1, colors.bi_purple)
 			rl.DrawRectangle(0,(3 * height) / 5, width, (2 * height) / 5 + 1, colors.bi_blue)
-		end
+		end,
+		draw_text = function (width, height)
+			simple_draw(width, height, "bi")
+		end,
 	}
 }
