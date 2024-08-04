@@ -1,5 +1,5 @@
 VERSION = "0.1.0"
-VERSION_REL = "1"
+VERSION_REL = "2"
 NAME = "luapride"
 
 local rl = require("luapride/ffi/raylib")

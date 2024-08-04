@@ -1,8 +1,8 @@
 rockspec_format = "3.0"
 package = "LuaPride"
-version = "0.1.0-1"
+version = "0.1.0-2"
 source = {
-	url = "git://github.com/benjamin-voisin/LuaPride"
+	url = "git+https://codeberg.org/BenjaminV/LuaPride.git"
 }
 description = {
 	summary = "A simple utility th show pride flags",
@@ -11,7 +11,7 @@ description = {
 	license = "CC-BY-SA-4.0"
 }
 dependencies = {
-	-- "luajit >= 2.1",
+	"lua = 5.1"
 }
 build = {
 	type = "builtin",
