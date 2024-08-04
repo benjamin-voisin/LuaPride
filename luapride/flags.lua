@@ -3,8 +3,8 @@ local colors = require("luapride/ffi/colors")
 
 local possible_paths = {
 	"./flags/",
-	"/lib/luarocks/rocks-5.1/"..NAME.."/"..VERSION.."/flags/",
-	"/lib64/luarocks/rocks-5.1/"..NAME.."/"..VERSION.."/flags/",
+	"/lib/luarocks/rocks-5.1/"..NAME.."/"..VERSION.."-"..VERSION_REL.."/flags/",
+	"/lib64/luarocks/rocks-5.1/"..NAME.."/"..VERSION.."-"..VERSION_REL.."-"..VERSION_REL.."/flags/",
 }
 
 --- Check if a file or directory exists in this path
