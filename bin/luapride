@@ -1,0 +1,3 @@
+#!/usr/bin/env luajit
+-- LuaPride command-line runner
+require 'luapride'
