@@ -40,7 +40,7 @@ local function horizontal (width, height, stripes)
 end
 
 local function simple_draw (width, height, name)
-	rl.DrawText(name, 2, 2, 100, rl.GRAY)
+	rl.DrawText(name, (width / 40), (height / 40), width / 10, rl.GRAY)
 end
 
 return {
