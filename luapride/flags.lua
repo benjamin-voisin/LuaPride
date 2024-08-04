@@ -1,24 +1,24 @@
 local rl = require("luapride/ffi/raylib")
 local colors = require("luapride/ffi/colors")
 
+local function horizontal (width, height, stripes)
+	local stripe_size = height / #stripes
+	for i, color in pairs(stripes) do
+		rl.DrawRectangle(0, ((i - 1) * stripe_size), width, stripe_size + 1, color)
+	end
+end
+
 return {
 	ace = {
 		type = "raylib",
 		draw = function (width, height)
-			rl.DrawRectangle(0,0, width, height / 4 + 1, rl.BLACK)
-			rl.DrawRectangle(0,(height * 1) / 4, width, height / 4 + 1, colors.ace_gray)
-			rl.DrawRectangle(0,(height * 2) / 4, width, height / 4 + 1, rl.WHITE)
-			rl.DrawRectangle(0,(height * 3) / 4, width, height / 4 + 1, colors.ace_purple)
+			horizontal(width, height, {rl.BLACK, colors.ace_gray, rl.WHITE, colors.ace_purple})
 		end
 	},
 	aro = {
 		type = "raylib",
 		draw = function (width, height)
-			rl.DrawRectangle(0,0, width, height / 5 + 1, colors.aro_green)
-			rl.DrawRectangle(0,height / 5, width, height / 5 + 1, colors.aro_pale_green)
-			rl.DrawRectangle(0,(height * 2) / 5, width, height / 5 + 1, rl.WHITE)
-			rl.DrawRectangle(0,(height * 3) / 5, width, height / 5 + 1, colors.aro_gray)
-			rl.DrawRectangle(0,(height * 4) / 5, width, height / 5 + 1, rl.BLACK)
+			horizontal(width, height, {colors.aro_green, colors.aro_pale_green, rl.WHITE, colors.aro_gray, rl.BLACK})
 		end
 	},
 	inclusive = {
@@ -28,9 +28,7 @@ return {
 	pan = {
 		type = "raylib",
 		draw = function (width, height)
-			rl.DrawRectangle(0,0, width, height / 3 + 1, colors.pan_pink)
-			rl.DrawRectangle(0,(height * 1) / 3, width, height / 3 + 1, colors.pan_yellow)
-			rl.DrawRectangle(0,(height * 2) / 3, width, height / 3 + 1, colors.pan_cyan)
+			horizontal(width, height, {colors.pan_pink, colors.pan_yellow, colors.pan_cyan})
 		end
 	},
 	bi = {
